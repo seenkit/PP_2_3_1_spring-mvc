@@ -8,13 +8,13 @@ import java.util.List;
 @Component
 public interface UserDao {
 
-    void add(User user);
+    void addUser(User user);
 
     List<User> getAllUsers();
 
     User getUserById(int id);
 
-    void edit(User user, int id);
+    void editUser(User user, int id);
 
-    void delete(int id);
+    void deleteUser(int id);
 }

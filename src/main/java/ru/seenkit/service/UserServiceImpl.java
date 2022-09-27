@@ -19,17 +19,15 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void add(User user) {
-        userDao.add(user);
+    public void addUser(User user) {
+        userDao.addUser(user);
     }
 
-    @Transactional
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 
-    @Transactional
     @Override
     public User getUserById(int id) {
         return userDao.getUserById(id);
@@ -37,13 +35,13 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void edit(User user, int id) {
-        userDao.edit(user, id);
+    public void editUser(User user, int id) {
+        userDao.editUser(user, id);
     }
 
     @Transactional
     @Override
-    public void delete(int id) {
-        userDao.delete(id);
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
     }
 }

@@ -2,7 +2,6 @@ package ru.seenkit.dao;
 
 import org.springframework.stereotype.Repository;
 import ru.seenkit.model.User;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public void add(User user) {
+    public void addUser(User user) {
         entityManager.persist(user);
     }
 
@@ -29,7 +28,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void edit(User editUser, int id) {
+    public void editUser(User editUser, int id) {
         User user = getUserById(id);
         user.setFirstName(editUser.getFirstName());
         user.setLastName(editUser.getLastName());
@@ -38,8 +37,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteUser(int id) {
         entityManager.remove(getUserById(id));
     }
-
 }

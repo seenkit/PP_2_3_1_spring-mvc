@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.seenkit.model.User;
 import ru.seenkit.service.UserService;
-
 import javax.validation.Valid;
 
 @Controller
@@ -21,7 +20,7 @@ public class UsersController {
     }
 
     @GetMapping("/")
-    public String allUsers(Model model) {
+    public String showAllUsers(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
         return "index";
     }
@@ -33,34 +32,33 @@ public class UsersController {
     }
 
     @PostMapping()
-    public String addUser(@ModelAttribute("newUser") @Valid User user, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+    public String postNewUser(@ModelAttribute("newUser") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "newUser";
         }
-        userService.add(user);
+        userService.addUser(user);
         return "redirect:/";
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String editUser(Model model, @PathVariable("id") int id) {
         model.addAttribute("editUser", userService.getUserById(id));
         return "/edit";
     }
 
     @PatchMapping("/{id}")
-    public String editUser(@ModelAttribute("editUser") @Valid User user, BindingResult bindingResult,
-                           @PathVariable("id") int id) {
-        if(bindingResult.hasErrors()) {
+    public String postUpdateUser(@ModelAttribute("editUser") @Valid User user, BindingResult bindingResult,
+                                 @PathVariable("id") int id) {
+        if (bindingResult.hasErrors()) {
             return "/edit";
         }
-        userService.edit(user, id);
+        userService.editUser(user, id);
         return "redirect:/";
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
-        userService.delete(id);
+    public String deleteUser(@PathVariable("id") int id) {
+        userService.deleteUser(id);
         return "redirect:/";
     }
-
 }
