@@ -11,18 +11,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     @Column(name = "first_name")
     @NotEmpty(message = "Имя не должно быть пустым")
     @Size(min = 2, max = 15, message = "Имя должно быть от 2 до 15 символов")
     private String firstName;
+
     @Column(name = "last_name")
     @NotEmpty(message = "Укажите Фамилию")
     @Size(min = 2, max = 20, message = "Фамилия должна быть от 2 до 20 символов")
     private String lastName;
+
     @Column(name = "age")
     @Min(value = 0, message = "Возраст не может быть отрицательным")
     @Max(value = 120, message = "Возраст не может быть больше 120")
     private int age;
+
     @Column(name = "email")
     @Email(message = "Не правильный Email")
     @NotEmpty(message = "Укажите Email")

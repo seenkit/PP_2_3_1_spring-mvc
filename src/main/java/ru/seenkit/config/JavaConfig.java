@@ -18,7 +18,6 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(value = "ru.seenkit")
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 public class JavaConfig {

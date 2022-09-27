@@ -26,13 +26,13 @@ public class UsersController {
     }
 
     @GetMapping("/add-new-user")
-    public String addNewUser(Model model) {
+    public String getNewUserForm (Model model) {
         model.addAttribute("newUser", new User());
         return "newUser";
     }
 
     @PostMapping()
-    public String postNewUser(@ModelAttribute("newUser") @Valid User user, BindingResult bindingResult) {
+    public String addNewUser(@ModelAttribute("newUser") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "newUser";
         }
@@ -41,13 +41,13 @@ public class UsersController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editUser(Model model, @PathVariable("id") int id) {
+    public String getEditUserForm(Model model, @PathVariable("id") int id) {
         model.addAttribute("editUser", userService.getUserById(id));
         return "/edit";
     }
 
     @PatchMapping("/{id}")
-    public String postUpdateUser(@ModelAttribute("editUser") @Valid User user, BindingResult bindingResult,
+    public String editUser(@ModelAttribute("editUser") @Valid User user, BindingResult bindingResult,
                                  @PathVariable("id") int id) {
         if (bindingResult.hasErrors()) {
             return "/edit";
